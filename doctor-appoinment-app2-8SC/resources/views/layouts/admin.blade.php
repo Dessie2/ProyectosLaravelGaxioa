@@ -19,8 +19,11 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
+        <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/f05834f7d2.js" crossorigin="anonymous"></script>
-
+        <!-- Sweet Alert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- WireUI -->
         <wireui:scripts/>
 
         <!-- Styles -->
@@ -42,6 +45,7 @@
                 @include('Layouts.includes.admin.breadcrumb')
 
                 {{--Slot opcional para acciones (botones)--}}
+
                 {{ $actions ?? '' }}
             </div>
 
@@ -54,5 +58,13 @@
         @yield('content')
 
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+        {{-- Sweet Alert --}}
+        @if (session('swal'))
+            <script>
+                Swal.fire(@json(session('swal')))
+            </script>
+        @endif
+
     </body>
 </html>
