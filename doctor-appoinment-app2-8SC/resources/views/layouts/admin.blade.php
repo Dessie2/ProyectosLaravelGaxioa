@@ -26,7 +26,7 @@
         <!-- WireUI -->
         <wireui:scripts/>
 
-        <!-- Styles -->
+        <!-- Styles --->
         @livewireStyles
 
 
