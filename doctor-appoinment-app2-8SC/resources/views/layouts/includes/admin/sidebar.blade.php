@@ -1,5 +1,5 @@
 @php
-    //icons array
+    // Menú lateral del panel de administración
     $links = [
         [
             'name' => 'Dashboard',
@@ -8,16 +8,19 @@
             'active' => request()->routeIs('admin.dashboard'),
         ],
         [
-            'header' => 'Manage Page',
+            'header' => 'Gestión',
         ],
         [
-            'header' => 'Gestion',
-        ],
-        [
-            'name' => 'Roles y Permisos',
+            'name' => 'Roles y permisos',
             'icon' => 'fa-solid fa-shield-halved',
             'href' => route('admin.roles.index'),
             'active' => request()->routeIs('admin.roles.*'),
+        ],
+        [
+            'name' => 'Usuarios',
+            'icon' => 'fa-solid fa-users',
+            'href' => route('admin.users.index'),
+            'active' => request()->routeIs('admin.users.*'),
         ],
     ];
 @endphp
@@ -32,13 +35,13 @@
         <ul class="space-y-2 font-medium">
             @foreach ($links as $link)
                 <li>
-                    {{-- revisa si hay un header definido --}}
+                    {{-- Si es un encabezado --}}
                     @isset($link['header'])
                         <div class='px-2 py-2 text-xs font-semibold text-gray-500 uppercase'>
                             {{ $link['header'] }}
                         </div>
                     @else
-                        {{-- si existe submenu --}}
+                        {{-- Si tiene submenú --}}
                         @isset($link['submenu'])
                             <button type="button"
                                 class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group 
@@ -68,7 +71,7 @@
                                 @endforeach
                             </ul>
                         @else
-                            {{-- si noexiste usa una etiqueta antigua --}}
+                            {{-- Enlace directo --}}
                             <a href="{{ $link['href'] }}"
                                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white 
                                 hover:bg-gray-100 dark:hover:bg-gray-700 group 
@@ -82,10 +85,6 @@
                     @endisset
                 </li>
             @endforeach
-
-            <li>
-                {{-- Elemento vacío opcional --}}
-            </li>
         </ul>
     </div>
 </aside>
